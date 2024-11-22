@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="pets.xml"/>
+    <bean name="shelterService" class="org.codeforall.services.ShelterService">
+            <property name="petDB" ref="petDB"/>
+    </bean>
+    <bean name="shelterView" class="org.codeforall.views.ShelterView">
+        <property name="shelterController" ref="shelterController"/>
+        <property name="petDB" ref="petDB"/>
+    </bean>
+    <bean name="shelterController" class="org.codeforall.controllers.ShelterController">
+        <constructor-arg name="shelterService" ref="shelterService"/>
+        <constructor-arg name="shelterView" ref="shelterView"/>
+    </bean>
+</beans>
+
